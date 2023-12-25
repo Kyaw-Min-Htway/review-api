@@ -16,6 +16,8 @@ use App\Http\Controllers\AuthController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
 Route::middleware('admin_auth')->group(function(){
     // login , register
 Route::redirect('/','loginPage');
@@ -26,6 +28,7 @@ Route::get('registerPage',[AuthController::class,'registerPage'])->name('auth#re
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin#dashboard');
+    Route::get('dashboard',[AuthController::class,'dashboard',])->name('dashboard');
 });
 
 Auth::routes();
